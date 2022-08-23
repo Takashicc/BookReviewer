@@ -2,7 +2,14 @@
     "scripts": {
         "dev_server": "npm --prefix ./backend run dev",
         "dev_client": "npm --prefix ./frontend run dev",
-        "dev": "concurrently \"npm run dev_server\" \"npm run dev_client\""
+        "dev": "concurrently \"npm run dev_server\" \"npm run dev_client\"",
+        "install_server_deps": "npm --prefix ./backend install ./backend",
+        "install_client_deps": "npm --prefix ./frontend install ./frontend",
+        "build_server": "npm --prefix ./backend run build",
+        "build_client": "npm --prefix ./frontend run build",
+        "start_server": "npm --prefix ./backend run start",
+        "prod": "npm run install_server_deps && npm run install_client_deps && npm run build_server && npm run build_client && npm run start_server",
+        "prod_release": "npm --prefix ./backend run schema:sync"
     },
     "devDependencies": {
         "concurrently": "^7.3.0"

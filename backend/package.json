@@ -1,0 +1,35 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typeorm": "tsc && ./node_modules/.bin/typeorm -d build/models/data-source.js",
+    "schema:sync": "npm run typeorm schema:sync",
+    "migration:generate": "npm run typeorm migration:generate",
+    "migration:create": "npm run typeorm migration:create",
+    "migration:show": "npm run typeorm migration:show",
+    "migration:run": "npm run typeorm migration:run",
+    "migration:revert": "npm run typeorm migration:revert"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.7.9",
+    "@types/pluralize": "^0.0.29",
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "log4js": "^6.6.1",
+    "pg": "^8.7.3",
+    "pluralize": "^8.0.0",
+    "qs": "^6.11.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.7",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

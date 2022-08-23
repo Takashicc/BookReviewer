@@ -92,6 +92,43 @@ export async function findBooksByTitle(
 }
 
 /**
+ * Find book information by book's isbn.
+ *
+ * @param isbn Book isbn
+ * @returns book's information
+ */
+export async function findBookByISBN(
+  isbn: string
+): Promise<ApiTypes.BookInfo | null> {
+  let bookInfo: ApiTypes.BookInfo | null = null;
+  try {
+    const response = await axios.get<RAKUTEN_BOOKS_RESPONSE>(
+      RAKUTEN_BOOKS_BASE_URL,
+      { params: { ...RAKUTEN_BOOKS_COMMON_PARAMS, isbn } }
+    );
+
+    validateRakutenError(response.data);
+
+    const bookItems = response.data.Items;
+    const bookItem = bookItems[0];
+    bookInfo = {
+      author: bookItem.author,
+      title: bookItem.title,
+      isbn: bookItem.isbn,
+      releasedAt: bookItem.salesDate,
+      publisher: bookItem.publisherName,
+      price: bookItem.itemPrice,
+      rakutenUrl: bookItem.itemUrl,
+      rakutenLargeImageUrl: bookItem.largeImageUrl,
+    };
+  } catch (e) {
+    throw e;
+  }
+
+  return bookInfo;
+}
+
+/**
  * Validate rakuten books api response.
  * Return nothing when no error was found.
  * Throw a error when error was found.

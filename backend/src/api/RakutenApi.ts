@@ -6,19 +6,9 @@ import {
   RakutenBookSystemError,
   RakutenBookTooManyRequestsError,
 } from "../Error/Error";
+import ApiTypes from "./ApiTypes";
 
 dotenv.config();
-
-interface BookInfo {
-  author: string;
-  title: string;
-  isbn: string;
-  releasedAt: string;
-  publisher: string;
-  price: number;
-  rakutenUrl: string;
-  rakutenLargeImageUrl: string;
-}
 
 interface RAKUTEN_BOOKS_RESPONSE {
   error: string;
@@ -69,8 +59,8 @@ const RAKUTEN_BOOKS_COMMON_PARAMS = {
  */
 export async function findBooksByTitle(
   title: string | undefined
-): Promise<BookInfo[]> {
-  const bookInfos: BookInfo[] = [];
+): Promise<ApiTypes.BookInfo[]> {
+  const bookInfos: ApiTypes.BookInfo[] = [];
   try {
     const response = await axios.get<RAKUTEN_BOOKS_RESPONSE>(
       RAKUTEN_BOOKS_BASE_URL,
@@ -82,7 +72,7 @@ export async function findBooksByTitle(
     const bookItems = response.data.Items;
     for (let i = 0; i < bookItems.length; i++) {
       const bookItem = bookItems[i];
-      const bookInfo: BookInfo = {
+      const bookInfo: ApiTypes.BookInfo = {
         author: bookItem.author,
         title: bookItem.title,
         isbn: bookItem.isbn,

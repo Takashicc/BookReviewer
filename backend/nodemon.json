@@ -5,6 +5,6 @@
     "watch": [
         "src"
     ],
-    "exec": "tsc -p tsconfig.json && node build/server.js",
+    "exec": "tsc -p tsconfig.json && node build/backend/src/server.js",
     "ext": "ts"
 }

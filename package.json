@@ -1,0 +1,10 @@
+{
+    "scripts": {
+        "dev_server": "npm --prefix ./backend run dev",
+        "dev_client": "npm --prefix ./frontend run dev",
+        "dev": "concurrently \"npm run dev_server\" \"npm run dev_client\""
+    },
+    "devDependencies": {
+        "concurrently": "^7.3.0"
+    }
+}

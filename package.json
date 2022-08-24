@@ -8,7 +8,8 @@
         "build_server": "npm --prefix ./backend run build",
         "build_client": "npm --prefix ./frontend run build",
         "start_server": "npm --prefix ./backend run start",
-        "prod": "npm run install_server_deps && npm run install_client_deps && npm run build_server && npm run build_client && npm run start_server",
+        "heroku-postbuild": "npm run install_server_deps && npm run install_client_deps && npm run build_server && npm run build_client",
+        "prod": "npm run start_server",
         "prod_release": "npm --prefix ./backend run schema:sync"
     },
     "devDependencies": {
